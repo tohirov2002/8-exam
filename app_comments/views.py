@@ -13,10 +13,10 @@ from .filters import CommentsFilterArticles
 class CommentsView(ModelViewSet):
     queryset = Comments.objects.all()
     serializer_class = CommentsSerializers
-    filter_backends = (DjangoFilterBackend, )
+    filter_backends = (DjangoFilterBackend,)
     filterset_class = CommentsFilterArticles
     # permission_classes = [IsAdminReadOnly]
-    http_method_names = ['get', 'post', 'delete']
+    http_method_names = ["get", "post", "delete"]
 
     def perform_create(self, serializer):
         return serializer.save(author=self.request.user)
@@ -39,31 +39,42 @@ class CommentsView(ModelViewSet):
             return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-@api_view(['POST'])
+@api_view(["POST"])
 def set_reaction(request, comment_id, reaction_type):
     if request.user.is_authenticated:
         try:
             comment = Comments.objects.get(pk=comment_id)
-            if reaction_type == 'like':
+            if reaction_type == "like":
                 if request.user in comment.comment_likes.all():
                     comment.comment_likes.remove(request.user)
-                    return Response(data={'message': 'Like canceled'}, status=status.HTTP_200_OK)
+                    return Response(
+                        data={"message": "Like canceled"}, status=status.HTTP_200_OK
+                    )
                 else:
                     comment.comment_likes.add(request.user)
                     if request.user in comment.comment_dislikes.all():
                         comment.comment_dislikes.remove(request.user)
-                    return Response(data={'message': 'Liked'}, status=status.HTTP_200_OK)
-            elif reaction_type == 'dislike':
+                    return Response(
+                        data={"message": "Liked"}, status=status.HTTP_200_OK
+                    )
+            elif reaction_type == "dislike":
                 if request.user in comment.comment_dislikes.all():
                     comment.comment_dislikes.remove(request.user)
-                    return Response(data={'message': 'DisLike canceled'}, status=status.HTTP_200_OK)
+                    return Response(
+                        data={"message": "DisLike canceled"}, status=status.HTTP_200_OK
+                    )
                 else:
                     comment.comment_dislikes.add(request.user)
                     if request.user in comment.comment_likes.all():
                         comment.comment_likes.remove(request.user)
-                    return Response(data={'message': 'DisLiked'}, status=status.HTTP_200_OK)
+                    return Response(
+                        data={"message": "DisLiked"}, status=status.HTTP_200_OK
+                    )
             else:
-                return Response(data={'message': 'invalid reaction type'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response(
+                    data={"message": "invalid reaction type"},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
         except Comments.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
     else:

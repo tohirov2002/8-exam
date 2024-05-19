@@ -12,12 +12,22 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ('username', 'first_name', 'last_name', 'birthday', 'organization', 'scientific_degree', 'another_information', 'photo', 'email', 'password',)
+        fields = (
+            "username",
+            "first_name",
+            "last_name",
+            "birthday",
+            "organization",
+            "scientific_degree",
+            "another_information",
+            "photo",
+            "email",
+            "password",
+        )
 
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ('id', 'first_name', 'last_name', 'email', 'date_joined', 'last_login')
-        read_only_fields = ('date_joined', 'last_login')
-
+        fields = ("id", "first_name", "last_name", "email", "date_joined", "last_login")
+        read_only_fields = ("date_joined", "last_login")

@@ -21,6 +21,6 @@ class Requirements(models.Model):
         return self.title_uz
 
     class Meta:
-        db_table = 'requirements'
-        verbose_name = 'Requirement'
-        verbose_name_plural = 'Requirements'
+        db_table = "requirements"
+        verbose_name = "Requirement"
+        verbose_name_plural = "Requirements"

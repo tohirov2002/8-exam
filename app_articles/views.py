@@ -5,7 +5,12 @@ from rest_framework import status
 from rest_framework.response import Response
 
 from .models import Category, ArticlesModel
-from .serializers import CategorySerializers, ArticlesSerializers, ArticlesGetSerializers, ArticlesGetSerializer
+from .serializers import (
+    CategorySerializers,
+    ArticlesSerializers,
+    ArticlesGetSerializers,
+    ArticlesGetSerializer,
+)
 from .filters import ArticlesFilter
 from app_journal.permissions import IsAdminReadOnly
 
@@ -26,7 +31,10 @@ class ArticlesView(viewsets.ModelViewSet):
         if self.request.user.is_authenticated:
             serializer.save(author=self.request.user)
         else:
-            return Response({"error": "Only authenticated users can create articles."}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response(
+                {"error": "Only authenticated users can create articles."},
+                status=status.HTTP_401_UNAUTHORIZED,
+            )
         return serializer.save()
 
     def get_serializer_class(self):
@@ -49,8 +57,3 @@ class ArticlesView(viewsets.ModelViewSet):
         response = super().retrieve(request, pk, *args, **kwargs)
         response.set_cookie(title, time())
         return response
-
-
-
-
-

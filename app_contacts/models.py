@@ -10,7 +10,6 @@ class ContactsModel(models.Model):
         return self.first_name
 
     class Meta:
-        db_table = 'contact'
-        verbose_name = 'Contact'
-        verbose_name_plural = 'Contacts'
-
+        db_table = "contact"
+        verbose_name = "Contact"
+        verbose_name_plural = "Contacts"

@@ -4,6 +4,6 @@ from .views import RequirementsView
 
 router = DefaultRouter()
 
-router.register(r'', RequirementsView)
+router.register(r"", RequirementsView)
 
 urlpatterns = router.urls

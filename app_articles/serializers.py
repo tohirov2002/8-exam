@@ -3,6 +3,7 @@ from rest_framework import serializers
 from .models import Category, ArticlesModel
 from app_journal.serializers import JournalSerializers
 
+
 class CategorySerializers(serializers.ModelSerializer):
 
     class Meta:
@@ -53,8 +54,12 @@ class ArticlesGetSerializer(serializers.ModelSerializer):
 
 class ArticlesGetSerializers(serializers.ModelSerializer):
     title = serializers.SerializerMethodField(method_name="get_name", read_only=True)
-    annotation = serializers.SerializerMethodField(method_name="get_names", read_only=True)
-    date_time = serializers.SerializerMethodField(method_name="get_times", read_only=True)
+    annotation = serializers.SerializerMethodField(
+        method_name="get_names", read_only=True
+    )
+    date_time = serializers.SerializerMethodField(
+        method_name="get_times", read_only=True
+    )
     eye = serializers.SerializerMethodField(method_name="get_eye", read_only=True)
     author = serializers.SerializerMethodField(method_name="get_author", read_only=True)
 
@@ -88,6 +93,3 @@ class ArticlesGetSerializers(serializers.ModelSerializer):
 
     def get_author(self, obj):
         return obj.author.id
-
-
-

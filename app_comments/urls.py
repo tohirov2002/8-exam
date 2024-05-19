@@ -5,11 +5,14 @@ from .views import CommentsView, set_reaction
 
 router = DefaultRouter()
 
-router.register(r'', CommentsView)
+router.register(r"", CommentsView)
 
 urlpatterns = router.urls
 
 urlpatterns += [
-    path('reaction/<int:comment_id>/<str:reaction_type>/', set_reaction, name='set_reaction')
+    path(
+        "reaction/<int:comment_id>/<str:reaction_type>/",
+        set_reaction,
+        name="set_reaction",
+    )
 ]
-

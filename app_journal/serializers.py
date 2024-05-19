@@ -18,7 +18,11 @@ class JournalGetSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = JournalModel
-        fields = ("id", "description", "logo",)
+        fields = (
+            "id",
+            "description",
+            "logo",
+        )
 
     def get_name(self, obj):
         try:

@@ -48,17 +48,17 @@ THIRD_APPS = [
     "rest_framework",
     "drf_yasg",
     "rest_framework_simplejwt",
-    'django_filters',
+    "django_filters",
 ]
 MY_APPS = [
-    'users',
-    'app_journal',
-    'app_articles',
-    'app_comments',
-    'app_contacts',
-    'app_questinAndanswer',
-    'app_requirements',
-    'app_search',
+    "users",
+    "app_journal",
+    "app_articles",
+    "app_comments",
+    "app_contacts",
+    "app_questinAndanswer",
+    "app_requirements",
+    "app_search",
 ]
 INSTALLED_APPS = DJANGO_DEFAULT_APPS + THIRD_APPS + MY_APPS
 
@@ -161,18 +161,16 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    'DEFAULT_FILTER_BACKENDS': (
-        'django_filters.rest_framework.DjangoFilterBackend',
-    ),
+    "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
 }
 
 AUTH_USER_MODEL = "users.CustomUser"
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'tohirovahmad1519@gmail.com'
-EMAIL_HOST_PASSWORD = 'npbh iecb iibe zqjw'
+EMAIL_HOST_USER = "tohirovahmad1519@gmail.com"
+EMAIL_HOST_PASSWORD = "npbh iecb iibe zqjw"
 
 # drf simple jwt

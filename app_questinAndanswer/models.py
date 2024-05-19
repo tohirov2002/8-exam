@@ -10,13 +10,15 @@ class Question(models.Model):
         return self.title
 
     class Meta:
-        db_table = 'question'
-        verbose_name = 'Question'
-        verbose_name_plural = 'Questions'
+        db_table = "question"
+        verbose_name = "Question"
+        verbose_name_plural = "Questions"
 
 
 class Answer(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers')
+    question = models.ForeignKey(
+        Question, on_delete=models.CASCADE, related_name="answers"
+    )
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -25,7 +27,7 @@ class Answer(models.Model):
         return self.text
 
     class Meta:
-        db_table = 'answer'
-        verbose_name = 'Answer'
-        verbose_name_plural = 'Answers'
-        ordering = ['-created_at']
+        db_table = "answer"
+        verbose_name = "Answer"
+        verbose_name_plural = "Answers"
+        ordering = ["-created_at"]

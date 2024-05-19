@@ -22,7 +22,9 @@ class ArticlesModel(models.Model):
     description_uz = models.TextField()
     description_ru = models.TextField()
     keywords = models.CharField(max_length=255)
-    references = models.CharField(max_length=255)  # Ustoz bunga kitob yoki havola yozilsa buldi dedi, Ushani uchun buni matinli maydon qilib oldim
+    references = models.CharField(
+        max_length=255
+    )  # Ustoz bunga kitob yoki havola yozilsa buldi dedi, Ushani uchun buni matinli maydon qilib oldim
     date_time = models.DateTimeField(auto_now_add=True)
     eye = models.IntegerField(default=0)
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)

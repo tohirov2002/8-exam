@@ -70,14 +70,14 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/users/", include('users.urls')),
+    path("api/users/", include("users.urls")),
     path("api/journal/", include("app_journal.urls")),
     path("api/articles/", include("app_articles.urls")),
-    path("api/comments/", include('app_comments.urls')),
-    path("api/contacts/", include('app_contacts.urls')),
-    path("api/allSearch/", include('app_search.urls')),
-    path("api/questinAndanswer/", include('app_questinAndanswer.urls')),
-    path("api/requirements/", include('app_requirements.urls')),
+    path("api/comments/", include("app_comments.urls")),
+    path("api/contacts/", include("app_contacts.urls")),
+    path("api/allSearch/", include("app_search.urls")),
+    path("api/questinAndanswer/", include("app_questinAndanswer.urls")),
+    path("api/requirements/", include("app_requirements.urls")),
     # drf simple jwt urls
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
