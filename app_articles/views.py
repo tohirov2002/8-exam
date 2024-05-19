@@ -20,6 +20,7 @@ class ArticlesView(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filterset_class = ArticlesFilter
 
+
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
         return serializer.save
@@ -45,6 +46,7 @@ class ArticlesView(viewsets.ModelViewSet):
         response = super().retrieve(request, pk, *args, **kwargs)
         response.set_cookie(title, time())
         return response
+
 
 
 

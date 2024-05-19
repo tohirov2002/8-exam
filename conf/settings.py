@@ -58,6 +58,7 @@ MY_APPS = [
     'app_contacts',
     'app_questinAndanswer',
     'app_requirements',
+    'app_search',
 ]
 INSTALLED_APPS = DJANGO_DEFAULT_APPS + THIRD_APPS + MY_APPS
 

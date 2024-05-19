@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from .models import Category, ArticlesModel
-
+from app_journal.serializers import JournalSerializers
 
 class CategorySerializers(serializers.ModelSerializer):
 
@@ -88,3 +88,6 @@ class ArticlesGetSerializers(serializers.ModelSerializer):
 
     def get_author(self, obj):
         return obj.author.id
+
+
+
