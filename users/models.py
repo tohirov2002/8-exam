@@ -26,6 +26,7 @@ class CustomUser(AbstractUser):
         ordering = ['date_joined']
 
 
+
 # Create your models here.
 class PasswordResets(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
