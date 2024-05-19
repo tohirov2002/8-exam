@@ -1,6 +1,8 @@
 from rest_framework import viewsets
 from time import time
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import status
+from rest_framework.response import Response
 
 from .models import Category, ArticlesModel
 from .serializers import CategorySerializers, ArticlesSerializers, ArticlesGetSerializers, ArticlesGetSerializer
@@ -16,20 +18,21 @@ class CategoryView(viewsets.ModelViewSet):
 
 class ArticlesView(viewsets.ModelViewSet):
     queryset = ArticlesModel.objects.all()
-    permission_classes = [IsAdminReadOnly]
+    # permission_classes = [IsAdminReadOnly]
     filter_backends = (DjangoFilterBackend,)
     filterset_class = ArticlesFilter
 
-
     def perform_create(self, serializer):
-        serializer.save(author=self.request.user)
-        return serializer.save
+        if self.request.user.is_authenticated:
+            serializer.save(author=self.request.user)
+        else:
+            return Response({"error": "Only authenticated users can create articles."}, status=status.HTTP_401_UNAUTHORIZED)
+        return serializer.save()
 
     def get_serializer_class(self):
         if self.request.method == "GET" and "pk" not in self.kwargs:
             return ArticlesGetSerializers
         return ArticlesSerializers
-
 
     def retrieve(self, request, pk=None, *args, **kwargs):
         title = f"article_{pk}"

@@ -15,11 +15,11 @@ class CommentsView(ModelViewSet):
     serializer_class = CommentsSerializers
     filter_backends = (DjangoFilterBackend, )
     filterset_class = CommentsFilterArticles
-    permission_classes = [IsAdminReadOnly]
+    # permission_classes = [IsAdminReadOnly]
     http_method_names = ['get', 'post', 'delete']
 
     def perform_create(self, serializer):
-        serializer.save(author=self.request.user)
+        return serializer.save(author=self.request.user)
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(Comments.objects.filter(comment_status=True))

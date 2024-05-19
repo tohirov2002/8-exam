@@ -8,4 +8,4 @@ from app_journal.permissions import IsAdminReadOnly
 class RequirementsView(viewsets.ModelViewSet):
     queryset = Requirements.objects.all()
     serializer_class = RequirementsSerializers
-    permission_classes = [IsAdminReadOnly]
+    # permission_classes = [IsAdminReadOnly]yt

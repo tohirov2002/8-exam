@@ -7,7 +7,7 @@ from .permissions import IsAdminReadOnly
 
 class JournalView(viewsets.ModelViewSet):
     queryset = JournalModel.objects.all()
-    permission_classes = [IsAdminReadOnly]
+    # permission_classes = [IsAdminReadOnly]
 
     def get_serializer_class(self):
         if self.request.method == "GET" and "pk" not in self.kwargs:
